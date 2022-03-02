@@ -42,25 +42,87 @@ inquirer
     .then(function(response) {
         console.log(response);
 
-        const htmlTemplate =  `<!DOCTYPE html> \n
-        <html lang="en"> \n
-        <head> \n
-            <meta charset="UTF-8"> \n
-            <meta http-equiv="X-UA-Compatible" content="IE=edge"> \n
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"> \n
-            <title>Document</title> \n
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> \n
-        </head> \n
-        <body> \n
-        <ul> \n
-            <li>Name: ${response.username}</li> \n
-            <li>Location: ${response.location}</li> \n
-            <li>Stomach Contents: ${response.eat}</li> \n
-            <li>Do you know George? ${response.george}</li> \n
-            <li>LinkIn Url: ${response.linkedin}</li> \n
-            <li>GitHub Url: ${response.github}</li> \n
-        </ul> \n
-        </body> \n
+        const htmlTemplate =  
+        
+        
+        `<!DOCTYPE html>
+        <html>
+          <head>
+            <title>Kourtney's Team Profile Generator</title>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+          </head>
+          <body>
+            <!-- Header -->
+            <header>
+              <h1>Kourtney's Team Profile Generator</h1>
+              <p>
+                When you change the screen size, the layout will change so you can view
+                the page comfortably no matter how small the screen gets!
+              </p>
+            </header>
+        
+            
+        
+            <!-- Body -->
+            <main>
+              
+              <!-- Product Cards -->
+              <div class="products">
+                <section class="card">
+                  <header><h1>${response.username}</h1> <h3>Manager</h3></header>
+                  <ul>
+                    <li>ID:</li>
+                    <li>Email:</li>
+                    <li>GitHub:</li>
+                  </ul>
+                </section>
+                <section class="card">
+                  <header><h1>${response.username}</h1> <h3>Engineer</h3></header>
+                  <ul>
+                    <li>ID:</li>
+                    <li>Email:</li>
+                    <li>GitHub:</li>
+                  </ul>
+                </section>
+                <section class="card">
+                  <header><h1>${response.username}</h1> <h3>Engineer</h3></header>
+                  <ul>
+                    <li>ID:</li>
+                    <li>Email:</li>
+                    <li>GitHub:</li>
+                  </ul>
+                </section>
+                <section class="card">
+                  <header><h1>${response.username}</h1> <h3>Engineer</h3></header>
+                  <ul>
+                    <li>ID:</li>
+                    <li>Email:</li>
+                    <li>GitHub:</li>
+                  </ul>
+                  
+                  
+                </section>
+                <section class="card">
+                  <header><h1>Wooden Spoons</h1> <h3>Intern</h3></header>
+                  <ul>
+                    <li>ID:</li>
+                    <li>Email:</li>
+                    <li>GitHub:</li>
+                  </ul>
+                  
+                  
+                </section>
+              </div>
+           
+        
+        
+              
+            </main>
+        
+            
+          </body>
         </html>`;
 
     // TODO: Add comments to explain each of the three arguments of appendFile()

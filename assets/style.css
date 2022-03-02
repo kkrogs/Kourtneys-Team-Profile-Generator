@@ -2,6 +2,18 @@
   box-sizing: border-box;
 }
 
+ul {
+list-style-type: none;
+
+
+}
+
+li {
+  border: solid rgb(42, 36, 56);
+  height: 50px;
+
+}
+
 .form {
   background-color: #15172b;
   border-radius: 20px;
@@ -42,7 +54,7 @@
 }
 
 .input {
-  background-color: #303245;
+  background-color: #15161b;
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
@@ -76,7 +88,7 @@
 }
 
 .placeholder {
-  color: #65657b;
+  color: #090918;
   font-family: sans-serif;
   left: 20px;
   line-height: 14px;
@@ -165,6 +177,8 @@ It is used to align the flex items; in our case, the product cards
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  column-gap: 20px;
+  row-gap: 20px;
 }
 
 /* 
@@ -179,7 +193,7 @@ We are making the product card not growable, not shrinkable, and with an initial
   border-radius: 10px;
   padding: 10px;
   flex: 0 0 500px;
-  height: 300px;
+  height: 350px;
   
 }
 
