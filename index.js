@@ -19,23 +19,29 @@ inquirer
     .prompt([
         {
             type: 'input',
-            message: 'Who is the Engineer?',
-            name: 'engineer',
+            message: 'What is the name of the entire teams general manager? Note this will appear as the title as example "Johns(name given from this question) Team"',
+            name: 'generalManager',
           },
           {
             type: 'input',
-            message: 'Who is the Intern?',
-            name: 'intern',
+            message: 'What is the team managers name?',
+            name: 'managerName',
           },
           {
             type: 'input',
-            message: 'Tell me what your stomach contents are?',
-            name: 'eat',
+            message: 'What is the managers ID?',
+            name: 'managerId',
           },
           {
             type: 'input',
-            message: 'Do you know George? He is the best.',
-            name: 'george',
+            name: 'managerEmail',
+            message: 'What is the managers email?',
+            name: 'managerEmail'
+        },  
+          {
+            type: 'input',
+            message: 'What is the managers office number?',
+            name: 'managerOffice',
           },
           {
             type: 'input',
@@ -57,7 +63,7 @@ inquirer
         `<!DOCTYPE html>
         <html>
           <head>
-            <title>Kourtney's Team Profile Generator</title>
+            <title>Kourtneys Team Profile Generator</title>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="stylesheet" type="text/css" href="./assets/style.css" />
@@ -65,7 +71,7 @@ inquirer
           <body>
             <!-- Header -->
             <header>
-              <h1>Kourtney's Team Profile Generator</h1>
+              <h1>${response.name}'s Team</h1>
               <p>
                 When you change the screen size, the layout will change so you can view
                 the page comfortably no matter how small the screen gets!
