@@ -1,22 +1,31 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+var Employee = require("./Lib/Employee");
+//can export intern file and more. We will not need it for employee just for intern, manager, engineer.
 
 
 // TODO: Include packages needed for this application
 
 
 // TODO: Create an array of questions for user input
+
+//Who is ht emanager
+//what type of employee do you want to make: manager, employee, intern. or you can say I am done
+//based on if it shows engineer, you will ask what the engieners name, id, email on github
+// If they choose intern, say what it the intern's name, ID, email, school
+//once the user answers the quewstions, then I create a new object with their answers as the properties
+
 inquirer
     .prompt([
         {
             type: 'input',
-            message: 'What is your name?',
-            name: 'username',
+            message: 'Who is the Engineer?',
+            name: 'engineer',
           },
           {
             type: 'input',
-            message: 'What is your exact gps coordinates, do NOT lie',
-            name: 'location',
+            message: 'Who is the Intern?',
+            name: 'intern',
           },
           {
             type: 'input',
@@ -71,7 +80,7 @@ inquirer
               <!-- Product Cards -->
               <div class="products">
                 <section class="card">
-                  <header><h1>${response.username}</h1> <h3>Manager</h3></header>
+                  <header><h1>${response.engineer}</h1> <h3>Manager</h3></header>
                   <ul>
                     <li>ID:</li>
                     <li>Email:</li>
@@ -79,7 +88,7 @@ inquirer
                   </ul>
                 </section>
                 <section class="card">
-                  <header><h1>${response.username}</h1> <h3>Engineer</h3></header>
+                  <header><h1>${response.intern}</h1> <h3>Engineer</h3></header>
                   <ul>
                     <li>ID:</li>
                     <li>Email:</li>
