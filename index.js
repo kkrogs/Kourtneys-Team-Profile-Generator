@@ -45,6 +45,8 @@ inquirer
             },
           ])
 
+          
+
 
         //end of prompt
         .then(function(response) {
@@ -65,7 +67,7 @@ inquirer
             <body>
               <!-- Header -->
               <header>
-                <h1>${response.name}'s Team</h1>
+                <h1>${response.generalManager}'s Team</h1>
                 <p>
                   When you change the screen size, the layout will change so you can view
                   the page comfortably no matter how small the screen gets!
@@ -80,7 +82,7 @@ inquirer
                 <!-- Product Cards -->
                 <div class="products">
                   <section class="card">
-                    <header><h1>${response.engineer}</h1> <h3>Manager</h3></header>
+                    <header><h1>${response.managerName}</h1> <h3>Manager</h3></header>
                     <ul>
                       <li>ID:</li>
                       <li>Email:</li>
@@ -88,15 +90,7 @@ inquirer
                     </ul>
                   </section>
                   <section class="card">
-                    <header><h1>${response.intern}</h1> <h3>Engineer</h3></header>
-                    <ul>
-                      <li>ID:</li>
-                      <li>Email:</li>
-                      <li>GitHub:</li>
-                    </ul>
-                  </section>
-                  <section class="card">
-                    <header><h1>${response.username}</h1> <h3>Engineer</h3></header>
+                    <header><h1>${response.engineer1Name}</h1> <h3>Engineer</h3></header>
                     <ul>
                       <li>ID:</li>
                       <li>Email:</li>
@@ -105,6 +99,14 @@ inquirer
                   </section>
                   <section class="card">
                     <header><h1>${response.username}</h1> <h3>Engineer</h3></header>
+                    <ul>
+                      <li>ID:</li>
+                      <li>Email:</li>
+                      <li>GitHub:</li>
+                    </ul>
+                  </section>
+                  <section class="card">
+                    <header><h1>${response.engineer1Github}</h1> <h3>Engineer</h3></header>
                     <ul>
                       <li>ID:</li>
                       <li>Email:</li>
@@ -160,6 +162,10 @@ function endofCode(params) {
   .then(function(response) {
     console.log(response)
     engineerA(); //inside of this, I need to branch off to another inquirer prompt. At the other inquirer prompts, add the endofCode prompt so they can work on differert people.
+    // engineerB();
+    // engineerC();
+    // intern();
+
   } )};
 
         
@@ -172,6 +178,11 @@ function engineerA(params) {
     message: 'What is the first engineers name?',
   
   },{
+    type: 'input',
+    name: 'engineer1Id',
+    message: 'What is the first engineers ID?',
+    
+  }, {
     type: 'input',
     message: 'What is the first engineers email?',
     name: 'engineer1Email',
@@ -187,6 +198,97 @@ function engineerA(params) {
 
   
   } )};
+
+  function engineerB(params) {
+    inquirer 
+    .prompt
+    ([{
+      type: 'input',
+      name: 'engineer2Name',
+      message: 'What is the second engineers name?',
+    
+    },{
+      type: 'input',
+      name: 'engineer2Id',
+      message: 'What is the second engineers ID?',
+      
+    },{
+      type: 'input',
+      message: 'What is the second engineers email?',
+      name: 'engineer2Email',
+    }, {
+      type: 'input',
+      message: 'What is the second engineers github username?',
+      name: 'engineer2Github',
+    }
+  ])
+    .then(function(response) {
+      console.log(response)
+      endofCode(); 
+  
+    
+    } )};
+
+  function engineerC(params) {
+    inquirer 
+    .prompt
+    ([{
+      type: 'input',
+      name: 'engineer3Name',
+      message: 'What is the third engineers name?',
+      
+    },{
+      type: 'input',
+      name: 'engineer3Id',
+      message: 'What is the third engineers ID?',
+      
+    }, {
+      type: 'input',
+      message: 'What is the third engineers email?',
+      name: 'engineer3Email',
+    }, {
+      type: 'input',
+      message: 'What is the third engineers github username?',
+      name: 'engineer3Github',
+    }
+  ])
+    .then(function(response) {
+      console.log(response)
+      endofCode(); 
+    
+      
+    } )};
+
+  function intern(params) {
+    inquirer 
+    .prompt
+    ([{
+      type: 'input',
+      name: 'internName',
+      message: 'What is the interns name?',
+        
+    },{
+      type: 'input',
+      name: 'internId',
+      message: 'What is the interns ID?',
+      
+    }, {
+      type: 'input',
+      message: 'What is the interns email?',
+      name: 'internEmail',
+    }, {
+      type: 'input',
+      message: 'What is the interns school?',
+      name: 'internSchool',
+    }
+  ])
+    .then(function(response) {
+      console.log(response)
+      endofCode(); 
+      
+        
+    } )};
+  
 
 
  
