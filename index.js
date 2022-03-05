@@ -36,7 +36,7 @@ inquirer
               type: 'input',
               name: 'managerEmail',
               message: 'What is the managers email?',
-              name: 'managerEmail'
+              
           },  
             {
               type: 'input',
@@ -147,22 +147,46 @@ function endofCode(params) {
   .prompt
   ([{
     type: 'list',
-    name: 'RoleA',
+    name: 'addToTeam',
     message: 'end',
     choices: [
       'Done adding to the team',
-      'Engineer',
-      'Intern',
+      'Continue',
     ]
 
 
   }
   ])
   .then(function(response) {
-    console.log(response); //inside of this, I need to branch off to another inquirer prompt. At the other inquirer prompts, add the endofCode prompt so they can work on differert people.
+    console.log(response)
+    engineerA(); //inside of this, I need to branch off to another inquirer prompt. At the other inquirer prompts, add the endofCode prompt so they can work on differert people.
   } )};
 
         
+function engineerA(params) {
+  inquirer 
+  .prompt
+  ([{
+    type: 'input',
+    name: 'engineer1Name',
+    message: 'What is the first engineers name?',
+  
+  },{
+    type: 'input',
+    message: 'What is the first engineers email?',
+    name: 'engineer1Email',
+  }, {
+    type: 'input',
+    message: 'What is the first engineers github username?',
+    name: 'engineer1Github',
+  },
+  
+  
+  ])};
+  
+
+
+ 
 
     
          //we will have 3 different inquirer prompts, it is best to put them into functions. This is where the first inquirer questions go. Then we go into the .then(calls another function).
