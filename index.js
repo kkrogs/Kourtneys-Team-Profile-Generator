@@ -179,11 +179,14 @@ function engineerA(params) {
     type: 'input',
     message: 'What is the first engineers github username?',
     name: 'engineer1Github',
-  },
+  }
+])
+  .then(function(response) {
+    console.log(response)
+    endofCode(); 
+
   
-  
-  ])};
-  
+  } )};
 
 
  
