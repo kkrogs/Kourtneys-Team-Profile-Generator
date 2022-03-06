@@ -1,15 +1,34 @@
-var Employee = require("./Employee");
+// importing Employee constructor 
+const Employee = require('./Employee');
 
-class Intern extends Employee {
-    //in the constructor put all properties inherited and ones to add
-    constructor(name, id, email, school) {
-        //su7per is what we are inheriting. What wse put in there is what we are inheriting
-      super(name, id, email);
-      this.school = school;
+// intern constructor extends employee constructor 
+class Intern extends Employee  {
+    constructor (name, id, email, school) {
+        // calling employee constructor
+        super (name, id, email); 
+
+        this.school = school; 
     }
-};
+
+    // returning school from input 
+    getSchool () {
+        return this.school;
+    }
+
+    // override employee role to intern
+    getRole () {
+        return "Intern";
+    }
+}
+
+// to be exported 
+module.exports = Intern; 
 
 // var newEmploy = new Employee("Mike", "2", "me@me.com");
 // var newEmploy2 = new Employee("Jennifer", "4", "j@me.com");
 
 // console.log(newEmploy2);
+
+
+
+

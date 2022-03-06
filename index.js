@@ -1,310 +1,154 @@
-const fs = require("fs");
-const inquirer = require("inquirer");
-var Employee = require("./Lib/Employee");
-//can export intern file and more. We will not need it for employee just for intern, manager, engineer.
+// link to page creation
+const generateHTML = require('./src/renderHTML');
 
+// team profiles
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern'); 
 
-// TODO: Include packages needed for this application
+// node modules 
+const fs = require('fs'); 
+const inquirer = require('inquirer');
 
+// team array
+const teamArray = []; 
 
-// TODO: Create an array of questions for user input
-
-//Who is ht emanager
-//what type of employee do you want to make: manager, employee, intern. or you can say I am done
-//based on if it shows engineer, you will ask what the engieners name, id, email on github
-// If they choose intern, say what it the intern's name, ID, email, school
-//once the user answers the quewstions, then I create a new object with their answers as the properties
-
-inquirer
-    .prompt([
+// start of manager prompts 
+const addManager = () => {
+    return inquirer.prompt ([
         {
             type: 'input',
-            message: 'What is the name of the entire teams general manager? Note this will appear as the title as example "Johns(name given from this question) Team"',
-            name: 'generalManager',
-          },
-            {
-              type: 'input',
-              message: 'What is the team managers name?',
-              name: 'managerName',
-            },
-            {
-              type: 'input',
-              message: 'What is the managers ID?',
-              name: 'managerId',
-            },
-            {
-              type: 'input',
-              name: 'managerEmail',
-              message: 'What is the managers email?',
-              
-          },  
-            {
-              type: 'input',
-              message: 'What is the managers office number?',
-              name: 'managerOffice',
-            },
-          ])
-
-          
-
-
-        //end of prompt
-        .then(function(response) {
-          console.log(response);
-          endofCode();
-  
-          const htmlTemplate =  
-          
-          
-          `<!DOCTYPE html>
-          <html>
-            <head>
-              <title>Kourtneys Team Profile Generator</title>
-              <meta charset="UTF-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <link rel="stylesheet" type="text/css" href="./assets/style.css" />
-            </head>
-            <body>
-              <!-- Header -->
-              <header>
-                <h1>${response.generalManager}'s Team</h1>
-                <p>
-                  When you change the screen size, the layout will change so you can view
-                  the page comfortably no matter how small the screen gets!
-                </p>
-              </header>
-          
-              
-          
-              <!-- Body -->
-              <main>
-                
-                <!-- Product Cards -->
-                <div class="products">
-                  <section class="card">
-                    <header><h1>${response.managerName}</h1> <h3>Manager</h3></header>
-                    <ul>
-                      <li>ID:</li>
-                      <li>Email:</li>
-                      <li>GitHub:</li>
-                    </ul>
-                  </section>
-                  <section class="card">
-                    <header><h1>${response.engineer1Name}</h1> <h3>Engineer</h3></header>
-                    <ul>
-                      <li>ID:</li>
-                      <li>Email:</li>
-                      <li>GitHub:</li>
-                    </ul>
-                  </section>
-                  <section class="card">
-                    <header><h1>${response.username}</h1> <h3>Engineer</h3></header>
-                    <ul>
-                      <li>ID:</li>
-                      <li>Email:</li>
-                      <li>GitHub:</li>
-                    </ul>
-                  </section>
-                  <section class="card">
-                    <header><h1>${response.engineer1Github}</h1> <h3>Engineer</h3></header>
-                    <ul>
-                      <li>ID:</li>
-                      <li>Email:</li>
-                      <li>GitHub:</li>
-                    </ul>
-                    
-                    
-                  </section>
-                  <section class="card">
-                    <header><h1>Wooden Spoons</h1> <h3>Intern</h3></header>
-                    <ul>
-                      <li>ID:</li>
-                      <li>Email:</li>
-                      <li>GitHub:</li>
-                    </ul>
-                    
-                    
-                  </section>
-                </div>
-             
-          
-          
-                
-              </main>
-          
-              
-            </body>
-          </html>`;
-  
-      // TODO: Add comments to explain each of the three arguments of appendFile()
-      // the name of the file, what we're appending on the file (user input from the terminal, and a )
-      fs.writeFile('index.html', htmlTemplate, (err) =>
-      // TODO: Describe how this ternary operator works
-      err ? console.error(err) : console.log('Commit logged!')
+            name: 'name',
+            message: 'Who is the manager of this team?', 
+            
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter the manager's ID.",
+           
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter the manager's email.",
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "Please enter the manager's office number",
       
-        )});
-        //step 1: Create 3 additional functions. Next function to create is going to be a menu. After they choose who their manager is, they will come back to this. Crossroads
-function endofCode(params) {
-  inquirer 
-  .prompt
-  ([{
-    type: 'list',
-    name: 'addToTeam',
-    message: 'end',
-    choices: [
-      'Done adding to the team',
-      'Continue',
-    ]
+        }
+    ])
+    .then(managerInput => {
+        const  { name, id, email, officeNumber } = managerInput; 
+        const manager = new Manager (name, id, email, officeNumber);
 
+        teamArray.push(manager); 
+        console.log(manager); 
+    })
+};
 
-  }
-  ])
-  .then(function(response) {
-    console.log(response)
-    engineerA(); //inside of this, I need to branch off to another inquirer prompt. At the other inquirer prompts, add the endofCode prompt so they can work on differert people.
-    // engineerB();
-    // engineerC();
-    // intern();
+const addEmployee = () => {
+    console.log(`
+    =================
+    Adding employees to the team
+    =================
+    `);
 
-  } )};
-
+    return inquirer.prompt ([
+        {
+            type: 'list',
+            name: 'role',
+            message: "Please choose your employee's role",
+            choices: ['Engineer', 'Intern'],
+        },
+        {
+            type: 'input',
+            name: 'name',
+            message: "What's the name of the employee?", 
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter the employee's ID.",
+           
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter the employee's email.",
+           
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: "Please enter the employee's github username.",
         
-function engineerA(params) {
-  inquirer 
-  .prompt
-  ([{
-    type: 'input',
-    name: 'engineer1Name',
-    message: 'What is the first engineers name?',
-  
-  },{
-    type: 'input',
-    name: 'engineer1Id',
-    message: 'What is the first engineers ID?',
-    
-  }, {
-    type: 'input',
-    message: 'What is the first engineers email?',
-    name: 'engineer1Email',
-  }, {
-    type: 'input',
-    message: 'What is the first engineers github username?',
-    name: 'engineer1Github',
-  }
-])
-  .then(function(response) {
-    console.log(response)
-    endofCode(); 
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Please enter the intern's school",
+          
+        }, {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: 'Would you like to add more team members?',
 
-  
-  } )};
+        }
+    ])
+    .then(employeeData => {
+        // data for employee types 
 
-  function engineerB(params) {
-    inquirer 
-    .prompt
-    ([{
-      type: 'input',
-      name: 'engineer2Name',
-      message: 'What is the second engineers name?',
-    
-    },{
-      type: 'input',
-      name: 'engineer2Id',
-      message: 'What is the second engineers ID?',
-      
-    },{
-      type: 'input',
-      message: 'What is the second engineers email?',
-      name: 'engineer2Email',
-    }, {
-      type: 'input',
-      message: 'What is the second engineers github username?',
-      name: 'engineer2Github',
-    }
-  ])
-    .then(function(response) {
-      console.log(response)
-      endofCode(); 
-  
-    
-    } )};
+        let { name, id, email, role, github, school, confirmAddEmployee } = employeeData; 
+        let employee; 
 
-  function engineerC(params) {
-    inquirer 
-    .prompt
-    ([{
-      type: 'input',
-      name: 'engineer3Name',
-      message: 'What is the third engineers name?',
-      
-    },{
-      type: 'input',
-      name: 'engineer3Id',
-      message: 'What is the third engineers ID?',
-      
-    }, {
-      type: 'input',
-      message: 'What is the third engineers email?',
-      name: 'engineer3Email',
-    }, {
-      type: 'input',
-      message: 'What is the third engineers github username?',
-      name: 'engineer3Github',
-    }
-  ])
-    .then(function(response) {
-      console.log(response)
-      endofCode(); 
-    
-      
-    } )};
+        if (role === "Engineer") {
+            employee = new Engineer (name, id, email, github);
 
-  function intern(params) {
-    inquirer 
-    .prompt
-    ([{
-      type: 'input',
-      name: 'internName',
-      message: 'What is the interns name?',
-        
-    },{
-      type: 'input',
-      name: 'internId',
-      message: 'What is the interns ID?',
-      
-    }, {
-      type: 'input',
-      message: 'What is the interns email?',
-      name: 'internEmail',
-    }, {
-      type: 'input',
-      message: 'What is the interns school?',
-      name: 'internSchool',
-    }
-  ])
-    .then(function(response) {
-      console.log(response)
-      endofCode(); 
-      
-        
-    } )};
-  
+            console.log(employee);
+
+        } else if (role === "Intern") {
+            employee = new Intern (name, id, email, school);
+
+            console.log(employee);
+        }
+
+        teamArray.push(employee); 
+
+        if (confirmAddEmployee) {
+            return addEmployee(teamArray); 
+        } else {
+            return teamArray;
+        }
+    })
+
+};
 
 
- 
+// function to generate HTML page file using file system 
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        // if there is an error 
+        if (err) {
+            console.log(err);
+            return;
+        // when the profile has been created 
+        } else {
+            console.log("Your team profile has been successfully created! Please check out the index.html")
+        }
+    })
+}; 
 
-    
-         //we will have 3 different inquirer prompts, it is best to put them into functions. This is where the first inquirer questions go. Then we go into the .then(calls another function).
-          // {
-          //   type: 'input',
-          //   message: 'What is the first engineers name?',
-          //   name: 'engineer1',
-          // },
-          // {
-          //   type: 'input',
-          //   message: 'What is engineer1s github URL',
-          //   name: 'github',
-          // },
-
-
-  //create a new function at the bottom of my code that when called, will fire off a new require prompt altogether
+addManager()
+  .then(addEmployee)
+  .then(teamArray => {
+    return generateHTML(teamArray);
+  })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .catch(err => {
+ console.log(err);
+  });

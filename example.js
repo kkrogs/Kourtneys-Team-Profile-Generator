@@ -1,163 +1,154 @@
-// decraing the files the we are going to use
-const fs = require('fs')
 const inquirer = require('inquirer');
-const Manager = require('./lib/manager')
-const Engineer = require('./lib/engineer')
-const Intern = require('./lib/intern')
-const renderHTML = require('./src/renderHTML')
-
-// declaring the variable teamMembers. This will be an array of each team member object
-let teamMembers = []
-
-// readme
-
-// video
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer')
+const Intern = require('./lib/Intern')
+const fs = require('fs');
+const generateTeam = require('./src/generateTeam');
 
 
-// the buildTeam funcion will be called on init. It is designed to take the user's input and create a manager object
-function buildTeam() {
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                message: "What is the team manager's name?",
-                name: 'name',
-            },
-            {
-                type: 'input',
-                message: "What is the team manager's id?",
-                name: 'Id',
-            },
-            {
-                type: 'input',
-                message: "What is the team manager's email?",
-                name: 'email',
-            },
-            {
-                type: 'input',
-                message: "What is the team manager's office number?",
-                name: 'officeNumber',
-            },
-        ])
-        .then((data) => {
+team = [];
+const managerQuestions = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the team manager\'s name?',
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'What is the team manager\'s id?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the team manager\'s email?',
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'What is the team manager\'s office number?',
+        },
+        {
+            type: 'list',
+            name: 'addMember',
+            message: 'What type of team member would you like to add?',
+            choices: ['Engineer', 'Intern', 'I don\'t want to add any more team members'],
+        }
+    ])
+    .then((managerAnswers) => {
+    
+        const manager = new Manager(managerAnswers.id, managerAnswers.name, managerAnswers.email, managerAnswers.officeNumber)
+        team.push(manager)
+        switch(managerAnswers.addMember) {
+            case 'Engineer':
+                engineerQuestions();
+                break;
+            case 'Intern':
+                internQuestions();
+                break;
+            default: 
+            writeToFile('dist/index.html', generateTeam(team))
+        }
+    });
+};
 
-            // this creates the manager object and pushes it to the team member array
-            const employee = new Manager(data.name, data.Id, data.email, data.officeNumber)
-            teamMembers.push(employee)
+const engineerQuestions = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the engineer\'s name?',
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'What is the engineer\'s id?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the engineer\'s email address?',
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is the engineer\'s GitHub username?',
+        },
+        {
+            type: 'list',
+            name: 'addMember',
+            message: 'What type of team member would you like to add next?',
+            choices: ['Engineer', 'Intern', 'I don\'t want to add any more team members'],
+        }
+    ])
+    .then((engineerAnswers) => {
+        const engineer = new Engineer(engineerAnswers.id, engineerAnswers.name, engineerAnswers.email, engineerAnswers.github)
+        team.push(engineer)
+        switch(engineerAnswers.addMember) {
+            case 'Engineer':
+                engineerQuestions();
+                break;
+            case 'Intern':
+                internQuestions();
+                break;
+            default: 
+            writeToFile('dist/index.html', generateTeam(team))
+        }
+    })
+};
 
-            // this prompts the user if they want to build a new team member object or not
-            promptForANewTeamMember()
-        });
+const internQuestions = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the intern\'s name?'
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'What is the intern\'s id?'
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the intern\'s email address?'
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'What is the intern\'s school?'
+        },
+        {
+            type: 'list',
+            name: 'addMember',
+            message: 'What type of team member would you like to add next?',
+            choices: ['Engineer', 'Intern', 'I don\'t want to add any more team members'],
+        }
+    ])
+    .then((internAnswers) => {
+        const intern = new Intern(internAnswers.id, internAnswers.name, internAnswers.email, internAnswers.school)
+        team.push(intern)
+        switch(internAnswers.addMember){
+            case 'Engineer':
+                engineerQuestions();
+                break;
+            case 'Intern':
+                internQuestions();
+                break;
+            default:
+                writeToFile('dist/index.html', generateTeam(team))
+        }
+    })
 }
 
-// this function prompts the user if they want to build a new team member object or not
-function promptForANewTeamMember() {
-
-    inquirer
-        .prompt([
-            {
-                type: 'list',
-                message: "Which type of team member would you like to add?",
-                name: 'addEmployee',
-                choices: ["Add an engineer", "Add an intern", "I don't want to add any more team members"]
-            },
-        ])
-        .then((data) => {
-
-            // this takes the users input to determine what they want to do. It will either build a new engineer, build a new intern, or compile the team's html.
-            if (data.addEmployee === "Add an engineer") {
-                buildNewEngineer()
-            } else if (data.addEmployee === "Add an intern") {
-                buildNewIntern()
-            } else {
-                compileTeam()
-            }
-        });
-}
-
-// this function is used to build a new engineer object based on the users input.
-function buildNewEngineer() {
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                message: "What is your engineer's name?",
-                name: 'name',
-            },
-            {
-                type: 'input',
-                message: "What is your engineer's id?",
-                name: 'Id',
-            },
-            {
-                type: 'input',
-                message: "What is your engineer's email address?",
-                name: 'email',
-            },
-            {
-                type: 'input',
-                message: "What is your engineer's GitHub username?",
-                name: 'gitHub',
-            },
-        ])
-        .then((data) => {
-
-            // this creates a new engineer object and pushes it to the teamMembers array
-            const employee = new Engineer(data.name, data.Id, data.email, data.gitHub)
-            teamMembers.push(employee)
-
-            // this prompts the user if they want to build a new team member object or not
-            promptForANewTeamMember()
-        });
-}
-
-// this function is used to build a new intern object based on the users input.
-function buildNewIntern() {
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                message: "What is your intern's name?",
-                name: 'name',
-            },
-            {
-                type: 'input',
-                message: "What is your intern's id?",
-                name: 'Id',
-            },
-            {
-                type: 'input',
-                message: "What is your intern's email?",
-                name: 'email',
-            },
-            {
-                type: 'input',
-                message: "What is your intern's school?",
-                name: 'school',
-            },
-        ])
-        .then((data) => {
-
-            // this creates a new intern object and pushes it to the teamMembers array
-            const employee = new Intern(data.name, data.Id, data.email, data.school)
-            teamMembers.push(employee)
-
-            // this prompts the user if they want to build a new team member object or not
-            promptForANewTeamMember()
-        });
-}
+managerQuestions();
 
 
-// this function takes the input and builds the html file based on the users team
-function compileTeam() {
-
-    const newPage = new renderHTML;
-
-    fs.writeFile("./dist/index.html", (newPage.renderHTMLPage(teamMembers)), (err) =>
-        err ? console.log(err) : console.log("Your team html file can be found in the dist folder")
-    );
-}
-
-
-// calls the buildTeam fuction when the program is loaded.
-buildTeam()
+function writeToFile(filename, data) {
+    fs.writeFile(filename, data, (err) => {
+        if(err) throw err;
+        console.log('file saved')
+    });
+};
