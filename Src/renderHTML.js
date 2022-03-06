@@ -11,7 +11,7 @@ const generateManager = function (manager) {
         <li>Email: <a href="mailto:${manager.email}">${manager.email}</a>
         </li>
         <li>Office Number: ${manager.officeNumber}
-<       /li>
+        </li>
       </ul>
     </section>
     `;
