@@ -4,7 +4,7 @@ const generateManager = function (manager) {
     <div class="products">
     <section class="card">
       <header><h1>${manager.name}
-        </h1> <h3>Manager</h3></header>
+        </h1> <h3>☕ Manager</h3></header>
         <ul>
         <li>ID: ${manager.id}
         </li>
@@ -21,7 +21,7 @@ const generateManager = function (manager) {
 const generateEngineer = function (engineer) {
     return `
     <section class="card">
-                    <header><h1>${engineer.name}</h1> <h3>Engineer</h3></header>
+                    <header><h1>${engineer.name}</h1> <h3>🛠 Engineer</h3></header>
                     <ul>
                       <li>ID: ${engineer.id}</li>
                       <li>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
@@ -35,10 +35,10 @@ const generateEngineer = function (engineer) {
 const generateIntern = function (intern) {
     return `
     <section class="card">
-                    <header><h1>${intern.name}</h1> <h3>Intern</h3></header>
+                    <header><h1>${intern.name}</h1> <h3>🎓 Intern</h3></header>
                     <ul>
                       <li>ID: ${intern.id}</li>
-                      <li>Email: <a href="mailto:${intern.email}">${intern.email}</a</li>
+                      <li>Email: <a href="mailto:${intern.email}">${intern.email}</a></li>
                       <li>School: ${intern.school}</li>
                     </ul>
                     
