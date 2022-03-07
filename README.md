@@ -23,7 +23,7 @@ This project is licensed under the MIT license.
 # Tests
 The following is needed to run the test: npm install --save-dev jest, npm install inquirer, also npm run tests to run the given tests.
 # Questions
-If you have any questions about the repository, feel free to contact me at n/a or kourtney.krogman@gmail.com.
+If you have any questions about the repository, feel free to contact me at kourtney.krogman@gmail.com.
 
 Here is a link to view the repository from Github:
 https://github.com/kkrogs/Kourtneys-Team-Profile-Generator
