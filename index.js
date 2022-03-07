@@ -82,13 +82,13 @@ const createEmployee = () => {
         {
             type: 'input',
             name: 'github',
-            message: "If you have added an engineer on your team, please provide their Github account name. If not, please type 'no'.",
+            message: "If you have added an engineer on your team, please provide their Github account name. If not, please type no.",
         
         },
         {
             type: 'input',
             name: 'school',
-            message: "If you have added an intern, please add the school name here. If not, please type 'no'.",
+            message: "If you have added an intern, please add the school name here. If not, please type no.",
           
         }, {
             type: 'confirm',
@@ -103,12 +103,12 @@ const createEmployee = () => {
         let { name, id, email, role, github, school, addEmployeeQuestion } = employeeParams; 
         let employee; 
         //if the engineer role is chosen, then make engineer = new Engineer taking into account name, id, email, github params from question prompts
-        if (role === "Engineer") {
+        if (role === 'Engineer') {
             employee = new Engineer (name, id, email, github);
 
             console.log(employee);
 
-        } else if (role === "Intern") {
+        } else if (role === 'Intern') {
             employee = new Intern (name, id, email, school);
 
             console.log(employee);
