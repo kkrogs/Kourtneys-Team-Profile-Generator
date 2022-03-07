@@ -1,5 +1,4 @@
 # Kourtneys-Team-Profile-Generator
-# Kourtneys-Team-Profile-Generator
  ![badge](https://img.shields.io/badge/License-MIT-brightgreen)
 
 # Description
