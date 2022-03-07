@@ -30,4 +30,4 @@ If you have any questions about the repository, feel free to contact me at kourt
 Here is a link to view the repository from Github:
 https://github.com/kkrogs/Kourtneys-Team-Profile-Generator
 
-Please access the following link to view video instructions how to use the Team Profile Generator: 
+Please access the following link to view video instructions how to use the Team Profile Generator: https://youtu.be/sSrk0Y72DKA
