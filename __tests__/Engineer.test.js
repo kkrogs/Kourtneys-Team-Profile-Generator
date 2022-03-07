@@ -13,7 +13,7 @@ describe("Engineer class", () => {
     describe("engineer github generating correctly", () => {
         it("Should correctly create the github property in the object", () => {
             const engineer = new Engineer("John", 1, "test@email.com", "JohnDoe")
-            expect(engineer.gitHub).toEqual("JohnDoe")
+            expect(engineer.github).toEqual("JohnDoe")
         })
     })
 
