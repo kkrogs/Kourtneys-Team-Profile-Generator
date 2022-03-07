@@ -14,6 +14,8 @@ This project guides the user through a series of choices on which team members t
 The following necessary dependencies must be installed to run the application npm install --save-dev jest, npm install inquirer
 # Usage
 In order to use this app, It is used by running node index.js to answer the prompted questions about each employee on the team. After running that command, open the Src folder and locate index.html. Open index.html and you will see a complete responsive webpage with cards showing the given employee's information.
+
+It is also possible to test the variables through Jest by running npm run test. This would let us know if the tests are returning the information that we're asking for to ensure that we have made a good, quality product.
 # License
 This project is licensed under the MIT license.
 
