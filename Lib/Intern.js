@@ -1,33 +1,26 @@
-// importing Employee constructor 
-const Employee = require('./Employee');
+const Employee = require("../Lib/Employee")
 
-// intern constructor extends employee constructor 
-class Intern extends Employee  {
-    constructor (name, id, email, school) {
-        // calling employee constructor
-        super (name, id, email); 
+// Declares the intern class ass an extention of the employee class
+class Intern extends Employee {
 
-        this.school = school; 
+    constructor(name, id, email, school) {
+        super(name, id, email)
+        this.school = school
+        this.role = "Intern"
     }
 
-    // returning school from input 
-    getSchool () {
-        return this.school;
+    // Gets the intern's school
+    getSchool() {
+        return this.school
     }
 
-    // override employee role to intern
-    getRole () {
-        return "Intern";
+    // get's intern's role
+    getRole() {
+        return "Intern"
     }
 }
 
-// to be exported 
-module.exports = Intern; 
-
-// var newEmploy = new Employee("Mike", "2", "me@me.com");
-// var newEmploy2 = new Employee("Jennifer", "4", "j@me.com");
-
-// console.log(newEmploy2);
+module.exports = Intern;
 
 
 

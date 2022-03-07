@@ -1,20 +1,20 @@
-// importing Employee constructor 
-const Employee = require('./Employee');
+const Employee = require("../Lib/Employee")
 
-// manager constructor extends employee constructor 
+
+// engineer is an extension of the employee class
 class Manager extends Employee {
-    constructor (name, id, email, officeNumber) {
-        // calling employee constructor
-        super (name, id, email); 
-        
-        this.officeNumber = officeNumber; 
+    constructor(name, id, email, officeNumber) {
+        super(name, id, email)
+        this.officeNumber = officeNumber
+        this.role = "Manager"
     }
 
-    // override employee role to manager 
-    getRole () {
-        return "Manager";
+
+    // gets the role of the employee
+    getRole() {
+        return "Manager"
     }
 }
 
-// to be exported 
-module.exports = Manager; 
+
+module.exports = Manager;

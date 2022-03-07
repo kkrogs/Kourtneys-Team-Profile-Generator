@@ -1,4 +1,4 @@
-const Manager = require('../lib/manager');
+const Manager = require('../Lib/Manager');
 
 
 // this file is made to test the manager class

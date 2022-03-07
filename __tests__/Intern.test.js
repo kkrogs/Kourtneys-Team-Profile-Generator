@@ -1,4 +1,4 @@
-const Intern = require('../lib/intern');
+const Intern = require('../Lib/Intern');
 
 
 // this file is made to test the intern class

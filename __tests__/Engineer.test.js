@@ -1,4 +1,4 @@
-const Engineer = require('../lib/engineer');
+const Engineer = require('../Lib/Engineer');
 
 
 // this file is made to test the engineer class
